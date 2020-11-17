@@ -1,0 +1,11 @@
+name: Titles
+version: ${project.version}
+main: com.muzak23.titles.Titles
+api-version: 1.13
+authors: [muzak23]
+description: Custom player titles
+website: www.muzak23.com
+commands:
+  title:
+    description: Sets a chat title
+    usage: /<command>
