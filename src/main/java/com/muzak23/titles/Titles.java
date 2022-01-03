@@ -43,25 +43,34 @@ public final class Titles extends JavaPlugin {
                                     if (Pattern.matches("(&4A(dmin)?.*?)", args[0])) {
                                         player.sendMessage("The admin prefix is not allowed!");
                                     } else {
-                                        if (!player.hasPermission("titles.mod")) {
-                                            //player.sendMessage(debugPrefix + "Not mod");
-                                            if (Pattern.matches("(.*&6M(od)?.*)", args[0])) {
-                                                player.sendMessage("The moderator prefix is not allowed!");
+                                        if (!player.hasPermission("titles.anything")) {
+                                            if (Pattern.matches("(.*([^!-z]|%.*%).*)", args[0])) {
+                                                player.sendMessage("Invalid characters!");
                                             } else {
-                                                if (!player.hasPermission("titles.rgb")) {
-                                                    //player.sendMessage(debugPrefix + "No RGB");
-                                                    if (Pattern.matches("(.*#[0-9a-fA-F*]{6}.*)", args[0])) {
-                                                        player.sendMessage("Hex codes are not allowed in titles. Sorry!");
-                                                    } else {  //  not a hex
-                                                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta removeprefix 1000");
-                                                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta addprefix 1000 &f[" + args[0] + "&f]");
+                                                if (!player.hasPermission("titles.mod")) {
+                                                    //player.sendMessage(debugPrefix + "Not mod");
+                                                    if (Pattern.matches("(.*&6M(od)?.*)", args[0])) {
+                                                        player.sendMessage("The moderator prefix is not allowed!");
+                                                    } else {
+                                                        if (!player.hasPermission("titles.rgb")) {
+                                                            //player.sendMessage(debugPrefix + "No RGB");
+                                                            if (Pattern.matches("(.*#[0-9a-fA-F*]{6}.*)", args[0])) {
+                                                                player.sendMessage("Donate $50 to use hex codes in titles.");
+                                                            } else {  //  not a hex
+                                                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta removeprefix 1000");
+                                                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta addprefix 1000 &f[" + args[0] + "&f]");
+                                                            }
+                                                        } else {  //  has titles.rgb
+                                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta removeprefix 1000");
+                                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta addprefix 1000 &f[" + args[0] + "&f]");
+                                                        }
                                                     }
-                                                } else {  //  has titles.rgb
+                                                } else {  //  has titles.mod
                                                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta removeprefix 1000");
                                                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta addprefix 1000 &f[" + args[0] + "&f]");
                                                 }
                                             }
-                                        } else {  //  has titles.mod
+                                        }  else {  //  has titles.anything
                                             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta removeprefix 1000");
                                             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " meta addprefix 1000 &f[" + args[0] + "&f]");
                                         }
